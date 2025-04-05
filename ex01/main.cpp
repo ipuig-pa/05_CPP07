@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 15:58:34 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/04/05 16:51:56 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/04/05 19:15:06 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ void toUpperWrapper(char &c)
 void appendWrapper(std::string &s)
 {
 	s = s.append("!!");
-}
-
-template <typename T>
-void	print(const T &a)
-{
-	std::cout << "	" << a << std::endl;
 }
 
 int	main(void)
