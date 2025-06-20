@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 17:09:54 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/04/05 18:53:15 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/06/20 10:05:08 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,30 @@ Array<T>::Array()
 template <typename T>
 Array<T>::Array(unsigned int n)
 {
-	this->_array = new T[n]();
-	this->_size = n;
+	if (n == 0)
+	{
+		this->_array = nullptr;
+		this->_size = 0;
+	}
+	else
+	{
+		this->_array = new T[n]();
+		this->_size = n;
+	}
 }
 
 template <typename T>
 Array<T>::Array(const Array &other)
 {
-	*this = other;
+	this->_size = other._size;
+	if (this->_size == 0)
+		this->_array = nullptr;
+	else
+	{
+		this->_array = new T[this->_size];
+		for(unsigned int i = 0; i < this->_size; i++)
+			this->_array[i] = other._array[i];
+	}
 }
 
 template <typename T>
@@ -35,10 +51,16 @@ Array<T> &Array<T>::operator=(const Array &other)
 {
 	if (this != &other)
 	{
+		delete[] this->_array;
 		this->_size = other._size;
-		this->_array = new T[this->_size];
-		for(unsigned int i = 0; i < this->_size; i++)
-			this->_array[i] = other._array[i];
+		if (this->_size == 0)
+			this->_array = nullptr;
+		else
+		{
+			this->_array = new T[this->_size];
+			for(unsigned int i = 0; i < this->_size; i++)
+				this->_array[i] = other._array[i];
+		}
 	}
 	return (*this);
 }
